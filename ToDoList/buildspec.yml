@@ -1,0 +1,39 @@
+version: 0.2
+
+env:
+  parameter-store:
+    DOCKER_USERNAME: /todo-app/docker-credentials/username  
+    DOCKER_PASSWORD:  /todo-app/docker-credentials/PAT
+    
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+  
+  pre_build:
+    commands:
+      - echo "Navigating to ToDoList directory..."
+      - cd ToDoList
+      - echo "Retrieving environment variables from AWS Systems Manager..."
+      - echo "Logging in to Docker Hub..."
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin 
+      - echo "Installing dependencies..."
+      - npm install express body-parser
+
+      
+  build:
+    commands:
+      - echo "Building Docker Image............."
+      - docker build -t "$DOCKER_USERNAME/todo-app:latest" .
+  
+  post_build:
+    commands:
+      - echo "Pushing the Docker image to Docker Hub..."
+      - docker push "$DOCKER_USERNAME/todo-app:latest"
+      - docker logout
+      - echo "Build completed successfully."
+      
+
+
+      
+      
