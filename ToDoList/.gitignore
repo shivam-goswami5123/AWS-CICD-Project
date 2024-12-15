@@ -1,0 +1,32 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directory
+jspm_packages/
+
+# Environment files
+.env
+
+# Build output
+dist/
+build/
+
+# IDE and OS-specific files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Optional: if you're using a temporary directory for cache or artifacts
+.cache/
+
+# Operating system files
+ehthumbs.db
+Desktop.ini
