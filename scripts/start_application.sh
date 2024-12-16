@@ -11,4 +11,4 @@ if [ "$(docker ps -q -f name=todo-app)" ]; then
 fi
 
 # Start the Docker container
-docker run -d --name todo-app -p 3000:3000 shivamgoswami5123/todo-app:latest
+docker run -d --name todo-app -p 3000:3000 your-docker-username/todo-app:latest
